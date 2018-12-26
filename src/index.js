@@ -1,9 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import firebase from "firebase/app";
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'semantic-ui-css/semantic.min.css'
 
+// Initialize Firebase
+var config = {
+apiKey: "AIzaSyDWUlD7yY7eTndRatrsWbnnrbob5IlKS4Y",
+authDomain: "sac-sahodaya.firebaseapp.com",
+databaseURL: "https://sac-sahodaya.firebaseio.com",
+projectId: "sac-sahodaya",
+storageBucket: "sac-sahodaya.appspot.com",
+messagingSenderId: "1010182875716"
+};
+firebase.initializeApp(config);
+const firestore = firebase.firestore();
+  const settings = {/* your settings... */ timestampsInSnapshots: true};
+  firestore.settings(settings);
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

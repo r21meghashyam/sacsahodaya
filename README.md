@@ -1,3 +1,9 @@
+# Topics:
+- [Installation](#Installation)
+- [Users and permissions](#Users-and-permissions)
+
+
+# Installation
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -42,3 +48,19 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+
+# Users and Permissions
+
+## Types of users
+- Adminstrator : Have full control on the website
+- Editors : Permission to publish contents
+- Subscribers : Only Permission to view contents
+
+| Type of user  | View Content  | Post/Remove Content   | Remove Users/Change User Roles    |
+|---------------|---------------|-----------------------|-----------------------------------|
+| Administrators| Yes           | Yes                   | Yes                               |
+| Editors       | Yes           | Yes                   | No                                |
+| Subscribers   | Yes           | No                    | No                                |
+

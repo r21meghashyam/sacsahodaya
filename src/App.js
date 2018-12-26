@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+
+//Components
+import EditProfile from './Routes/EditProfile';
+import Gallery from './Routes/Gallery';
+import Home from './Routes/Home';
+import LogIn from './Routes/Login';
+import LogOut from './Routes/LogOut';
+import NotFound from './Routes/NotFound';
+import Profile from './Routes/Profile';
+import Register from './Routes/Register';
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+	
+	render() {
+		return (
+	 		<div className="App">
+				
+	  			<Router>
+	   				<Switch>
+						
+		  				<Route path="/" component={Home} exact/>
+		  				<Route path="/edit-profile" component={EditProfile} exact/>
+		  				<Route path="/gallery" component={Gallery} exact/>
+		  				<Route path="/login" component={LogIn} exact/>
+		  				<Route path="/logout" component={LogOut} exact/>
+		  				<Route path="/profile" component={Profile} exact/>
+		  				<Route path="/register" component={Register} exact/>
+		  				<Route path="/" component={NotFound} />
+					</Switch>
+				
+				</Router>
+				
+			</div>
+		);
+  	}
 }
 
 export default App;

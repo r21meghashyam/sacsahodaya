@@ -1,0 +1,20 @@
+TASKS:
+✔ Create a layout for profile @today @done (12/22/2018, 4:05:36 AM)
+✔ Merge HomeContainer & Responsive Cotainer @low @done (12/21/2018, 6:51:30 PM)
+✔ Add log in status for mobile container @done @high  (12/21/2018, 6:52:45 PM)
+☐ Ask personal details in profile (with edit mode) @high @today 
+☐ Add admin link in footer @high 
+☐ Admin view other users (use pagination & search) @high 
+☐ Admin change role of other users
+☐ Categorize admin,editors,subscribers @low 
+☐ layout Gallery @high 
+☐ Upload images to gallery @high 
+☐ Likes and comments on photos @low 
+☐ photo details: date, caption @low 
+☐ Change profile pic @low 
+☐ Change name @low 
+☐ Add email (Provide verification) @low 
+☐ Add phone Number (Provide verification) @high 
+☐ Link accounts @low 
+☐ Current Occupation @high 
+✔ Add sahodaya logo to homepage navigation on scroll down @low @done (12/22/2018, 4:18:25 AM)
