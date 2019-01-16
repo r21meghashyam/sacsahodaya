@@ -47,7 +47,7 @@ export default class Login extends Component{
           lastLoginAt: user.toJSON().lastLoginAt,
           createdAt:user.toJSON().createdAt,
           photoURL:user.photoURL
-        }).then(success=>{
+        },{merge:true}).then(success=>{
           
               this.props.history.push('/');
           

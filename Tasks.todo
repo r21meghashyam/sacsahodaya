@@ -1,20 +1,75 @@
-TASKS:
-✔ Create a layout for profile @today @done (12/22/2018, 4:05:36 AM)
-✔ Merge HomeContainer & Responsive Cotainer @low @done (12/21/2018, 6:51:30 PM)
-✔ Add log in status for mobile container @done @high  (12/21/2018, 6:52:45 PM)
-☐ Ask personal details in profile (with edit mode) @high @today 
-☐ Add admin link in footer @high 
-☐ Admin view other users (use pagination & search) @high 
-☐ Admin change role of other users
-☐ Categorize admin,editors,subscribers @low 
-☐ layout Gallery @high 
-☐ Upload images to gallery @high 
-☐ Likes and comments on photos @low 
-☐ photo details: date, caption @low 
-☐ Change profile pic @low 
-☐ Change name @low 
-☐ Add email (Provide verification) @low 
-☐ Add phone Number (Provide verification) @high 
-☐ Link accounts @low 
-☐ Current Occupation @high 
-✔ Add sahodaya logo to homepage navigation on scroll down @low @done (12/22/2018, 4:18:25 AM)
+Homepage:
+    ☐ Add gallery & articles to home page (maybe recent 5) @high
+    ✔ Add sahodaya logo to homepage navigation on scroll down @low @done (12/22/2018, 4:18:25 AM)
+    Content:
+        ☐ Gallery
+        ☐ Articles
+        ☐ About
+        ☐ Work of sahodaya (Donated so far, Old Age homes visisted, etc)
+        ☐ Testimonials
+        ☐ Contact Details
+        ☐ Upcomming Events
+Events:
+    ☐ Old and new Events
+    ☐ Calendar of events
+Gallery:
+    ☐ On hover on album card, the image keeps changing every 2/3 second with another pic of the album @low 
+    ☐ Date wise view tab @low 
+    ☐ Location wise view tab @low
+    ☐ Placeholder for images to load @low 
+    ✔ Create album button only for admins @high @done (1/3/2019, 8:45:36 AM)
+    ✔ layout Gallery @high @done (12/30/2018, 4:24:53 AM)
+View Album:
+    ☐ Placeholder for images to load @low 
+    ✔ Delete album button only for admins @high @done (1/3/2019, 8:45:48 AM)
+    ☐ Delete photo for admins @high
+    ☐ photo details: date, caption @low 
+    ☐ Likes and comments on photos @low 
+    ☐ On hover on photo, display like button with like count @low 
+    ☐ Description of the album @low 
+    ☐ Share album button @low 
+    ☐ Play videos @low 
+Create Album:
+    ✔ Upload images to gallery @high @done (12/30/2018, 4:24:55 AM)
+    ☐ Drag and drop images @low
+    ☐ Add location (optional) @low
+    ☐ Upload videos @low 
+    ☐ Multiple contributors to one article (ask first author permisson) @low
+About:
+    ☐ About page @high
+Articles:
+    ☐ Author photo @low
+    ☐ View, likes ,comments, share count @low 
+    ☐ Pagination
+View Article:
+    ☐ Comments and likes @low
+    ☐ Share album button @low
+    ☐ Edit button only for admins and authors @high 
+Write Article:
+    ☐ Add images @high 
+    ☐ Add emojis @low
+    ☐ Multiple Author permisson @low 
+    ☐ Add font color, marker @low 
+Profile:
+    ✔ Create a layout for profile @today @done (12/22/2018, 4:05:36 AM)
+Edit Profile:
+    ✔ Current Occupation @high @done (12/27/2018, 1:29:22 PM)
+    ☐ Ask Occupation in detail @high 
+    ☐ verification of phone number @high 
+    ☐ Link accounts @low 
+    ☐ Change profile pic @low 
+    ✔ Change name @low @done (12/30/2018, 4:25:05 AM)
+    ☐ Add email (Provide verification) @low 
+    ☐ Add phone Number (Provide verification) @high 
+    ✔ Ask personal details in profile (with edit mode) @high @today @done (12/27/2018, 5:49:18 AM)
+Members:
+    ✔ Admin change role of other users @done (12/27/2018, 7:13:46 AM)
+    ✔ Admin view other users (use pagination & search) @high @done (12/27/2018, 7:13:43 AM)
+Footer:
+    ✘ Add admin link in footer @high @cancelled (12/27/2018, 6:06:03 AM)
+Header:
+    ✔ Add log in status for mobile container @done @high  (12/21/2018, 6:52:45 PM)
+Other:
+    ✔ Categorize admin,editors,subscribers @low @done (12/27/2018, 7:13:50 AM)
+    ✔ Merge HomeContainer & Responsive Cotainer @low @done (12/21/2018, 6:51:30 PM)
+    ☐ Push Notification on new album & articles @low 

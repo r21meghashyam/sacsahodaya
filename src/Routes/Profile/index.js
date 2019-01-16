@@ -40,13 +40,13 @@ export default class Profile extends Component{
     let uid = firebase.auth().currentUser.uid;
     firestore.doc(`users/${uid}`).onSnapshot(doc=>{
       const data = doc.data();
-      console.log(data);
+      //console.log(data);
       this.setState(data);
     })
   }
   
   render(){
-    let {firstName,lastName,photoURL,createdAt,email} = this.state;
+    let {firstName,lastName,photoURL,createdAt,email,phoneNumber,occupation} = this.state;
     return(
     <ResponsiveContainer>
       <Container text style={{ marginTop: '7em' }} >
@@ -79,13 +79,13 @@ export default class Profile extends Component{
                 <Table.Cell>
                   Phone Number
                 </Table.Cell>
-                <Table.Cell>No phone number has been registered</Table.Cell>
+                <Table.Cell>{phoneNumber}</Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>
                   Current Occupation
                 </Table.Cell>
-                <Table.Cell>No details</Table.Cell>
+                <Table.Cell>{occupation}</Table.Cell>
               </Table.Row>
             </Table.Body>
              

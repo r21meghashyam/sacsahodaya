@@ -13,15 +13,12 @@ import {
 } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import Menus from '../Menus';
-import firebase from 'firebase/app'
+import Redux from '../../Lib/Redux';
 
 //Components
 import LandingSection from '../../Components/LandingSection'
+import Footer from '../Footer';
 
-/* Heads up!
- * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
- * It can be more complicated, but you can create really flexible markup.
- */
 class DesktopContainer extends Component {
     state = {
       authChecked:false,
@@ -29,7 +26,7 @@ class DesktopContainer extends Component {
       path:'',
       fixed:false
     }
-  
+    
     hideFixedMenu = () => this.state.home&&this.setState({ fixed: false })
     showFixedMenu = () => this.state.home&&this.setState({ fixed: true })
     checkRoute(){
@@ -40,19 +37,25 @@ class DesktopContainer extends Component {
         fixed:window.location.pathname!=='/'
       })
     }
-    constructor(props){
-      super(props);
-      firebase.auth().onAuthStateChanged(state=>{
-          let user = firebase.auth().currentUser;
-          this.setState({
-            userLoggedIn:state?true:false,
-            authChecked:true,
-            name:user?user.displayName.split(" ").shift():'User'
-          })
-      })
-    }
     componentDidMount(){
       this.checkRoute();
+      this.checkAuth();
+      this.REDUX_UNSUBSCRIBE = Redux.subscribe(()=>{
+        this.checkAuth();
+      })
+    }
+    checkAuth(){
+      let state = Redux.getState();
+      
+      this.setState({
+        userLoggedIn:state.loggedIn,
+        authChecked:state.authChecked,
+        name:state.loggedIn?state.user.firstName:''
+      })
+    }
+
+    componentWillUnmount(){
+      this.REDUX_UNSUBSCRIBE();
     }
     componentDidUpdate(prevProps) {
      this.checkRoute();
@@ -73,7 +76,7 @@ class DesktopContainer extends Component {
             <Segment
               inverted
               textAlign='center'
-              style={home?{ minHeight: 700, padding: '1em 0em' }:{padding:'0px'}}
+              style={home?{ minHeight: 700, padding: '1em 0em'}:{padding:'0px'}}
               vertical
             >
             
@@ -139,7 +142,7 @@ class DesktopContainer extends Component {
     state = {
       authChecked:false,
       home:false,
-      path:'',
+      path:''
     }
   
     handleSidebarHide = () => this.setState({ sidebarOpened: false })
@@ -152,28 +155,35 @@ class DesktopContainer extends Component {
         path:window.location.pathname,
       })
     }
-    constructor(props){
-      super(props)
-      firebase.auth().onAuthStateChanged(state=>{
-        let user = firebase.auth().currentUser;
-        this.setState({
-          userLoggedIn:state?true:false,
-          authChecked:true,
-          name:user?user.displayName.split(" ").shift():'User'
-        })
-    })
-    }
     componentDidMount(){
       this.checkRoute();
+      this.checkAuth();
+      this.REDUX_UNSUBSCRIBE = Redux.subscribe(()=>{
+        this.checkAuth();
+      })
+    }
+    checkAuth(){
+      let state = Redux.getState();
+      
+      this.setState({
+        userLoggedIn:state.loggedIn,
+        authChecked:state.authChecked,
+        name:state.loggedIn?state.user.firstName:''
+      })
+    }
+
+    componentWillUnmount(){
+      this.REDUX_UNSUBSCRIBE();
     }
     componentDidUpdate(prevProps) {
      this.checkRoute();
      
     }
+
     render() {
       const { children } = this.props
       const { sidebarOpened,home,userLoggedIn,authChecked,name } = this.state
-  
+      //console.log(this.state)
       return (
         <Responsive as={Sidebar.Pushable} maxWidth={Responsive.onlyMobile.maxWidth}>
           <Sidebar
@@ -242,6 +252,7 @@ class DesktopContainer extends Component {
     <div>
       <DesktopContainer>{children}</DesktopContainer>
       <MobileContainer>{children}</MobileContainer>
+      <Footer/>
     </div>
   )
   

@@ -47,9 +47,9 @@ export default class Register extends Component{
           lastLoginAt: user.toJSON().lastLoginAt,
           createdAt:user.toJSON().createdAt,
           photoURL:user.photoURL
-        }).then(success=>{
+        },{merge:true}).then(success=>{
           
-              this.props.history.push('/profile');
+              this.props.history.push('/edit-profile');
           
         },error=>{
           this.setState({
