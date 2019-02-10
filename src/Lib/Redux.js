@@ -12,15 +12,14 @@ const Redux = createStore((state = {}, action)=> {
         if(user){
           state.user=user;
           state.user.firstName=user.displayName.split(" ").shift()
-          
         }
-
       }
       break;
       case 'USER_UPDATED':{
         console.log(action)
        state.user=action.user;
-       if(!state.user.role)
+       console.log(state.user);
+       if(state.user&&!state.user.role)
         state.user.role="Subscriber"
       }
     }
@@ -29,19 +28,15 @@ const Redux = createStore((state = {}, action)=> {
 )
 
 Redux.subscribe(()=>{
-  
   let state = Redux.getState()
   // eslint-disable-next-line
   switch(state.type){
     case 'AUTH_CHANGED': {
-      console.log(state.user.uid)
+      if(state.user) 
       firebase.firestore().doc(`users/${state.user.uid}`).get().then(doc=>{
-        //state.user={...doc.data()};
-        console.log(doc)
         Redux.dispatch({type:'USER_UPDATED',user:doc.data()})
       })
     }
   }
 })
-
 export default Redux;

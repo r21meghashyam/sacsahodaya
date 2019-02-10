@@ -97,7 +97,7 @@ export default class Login extends Component{
     <ResponsiveContainer>
       <Container text style={{ marginTop: '7em' }} >
       
-        <Segment inverted>
+        <Segment inverted style={{margin:10}}>
           <Header as='h1'>Login</Header>
           <Header as='h3'>Choose one of the methods to login to your account</Header>
           <Segment textAlign="center" inverted>

@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom';
 export default class Menus extends Component{
   state={links:[
     {location:'/',text:'Home'},
+    {location:'/events',text:'Events'},
     {location:'/gallery',text:'Gallery'},
     {location:'/articles',text:'Articles'},
     {location:'/members',text:'Members'},

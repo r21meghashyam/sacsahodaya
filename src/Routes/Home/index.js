@@ -2,18 +2,21 @@ import React,{Component} from 'react'
 import {
   Button,
   Container,
-  Grid,
   Header,
-  Image,
   Segment,
 } from 'semantic-ui-react'
 import { Value } from 'slate'
 import {Link} from 'react-router-dom'
 import AllPhotos from '../Gallery/Photos';
-
-//Components
+import BigCalendar from 'react-big-calendar'
+import moment from 'moment'
+import 'react-big-calendar/lib/css/react-big-calendar.css'; 
 import ResponsiveContainer from '../../Components/ResponsiveContainer'
 import firebase from 'firebase/app';
+
+const localizer = BigCalendar.momentLocalizer(moment) 
+
+//Components
 
 /* eslint-disable react/no-multi-comp */
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
@@ -24,7 +27,8 @@ import firebase from 'firebase/app';
 
 export default class HomepageLayout extends Component{
   state={
-    articles:[]
+    articles:[],
+    events:[]
   }
   constructor(props){
     super(props);
@@ -39,6 +43,15 @@ export default class HomepageLayout extends Component{
           this.setState({articles})
         })
     })
+  }
+  componentWillMount(){
+    firebase.firestore().collection('events').onSnapshot(snapshot=>{
+      let events=[];
+      snapshot.docs.forEach(doc=>{
+        events.push(doc.data());
+      });
+      this.setState({events});
+    });
   }
   render(){
     let {articles} = this.state;
@@ -55,11 +68,11 @@ export default class HomepageLayout extends Component{
     </Segment>
     </Container>
     
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    <Segment style={{ padding: '8em 0em' }} vertical basic>
       <Container text>
         {
           articles.map((article,index)=>(
-          <React.Fragment>
+          <React.Fragment key={index}>
           <Header as='h3' style={{ fontSize: '2em' }}>
           {article.title}
         </Header>
@@ -75,6 +88,21 @@ export default class HomepageLayout extends Component{
         }
       </Container>
     </Segment>
+
+    <Container>
+      <Header as='h3' style={{ fontSize: '2em' }}>
+        Events
+      </Header>
+      <Container style={{padding:10}}>
+        <BigCalendar
+          localizer={localizer}
+          events={this.state.events}
+          
+          defaultView={BigCalendar.Views.AGENDA}
+        />
+      </Container>
+      
+    </Container>
    
   </ResponsiveContainer>
     );
