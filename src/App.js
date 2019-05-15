@@ -16,6 +16,7 @@ import NotFound from './Routes/NotFound';
 import Profile from './Routes/Profile';
 import Register from './Routes/Register';
 import ViewAlbum from './Routes/Gallery/ViewAlbum';
+import Convert from './Routes/Gallery/Convert';
 import ViewArticle from './Routes/Articles/ViewArticle';
 import EditArticle from './Routes/Articles/Edit';
 import AddEvent from './Routes/Events/AddEvent';
@@ -50,6 +51,7 @@ class App extends Component {
 		  				<Route path="/profile" component={Profile} exact/>
 		  				<Route path="/register" component={Register} exact/>
 		  				<Route path="/gallery/album/:album_id" component={ViewAlbum} exact/>
+		  				<Route path="/gallery/convert" component={Convert} exact/>
 		  				<Route path="/" component={NotFound} />
 					</Switch>
 				

@@ -22,6 +22,7 @@ import 'react-day-picker/lib/style.css';
 import {Link} from 'react-router-dom'
 //Components
 import ResponsiveContainer from '../../../Components/ResponsiveContainer'
+import imageCompression from 'browser-image-compression';
 
 /* eslint-disable react/no-multi-comp */
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
@@ -168,23 +169,32 @@ export default class Create extends Component{
 		this.handleDayChange=this.handleDayChange.bind(this);
 	  }
 	upload(e){
-		Array.from(e.target.files).forEach(image=>{
-			let reader = new FileReader()
-			reader.onload =  (data) => {
-				image.data=data.target.result;
-				let images = this.state.images;
-				let img = new window.Image();
-				img.onload=()=>{
-					image.width=img.width;
-					image.height=img.height;
-					images.push(image);
-					this.setState({images})
-					//console.log(this);
+		const options = { 
+			maxSizeMB: 1,          // (default: Number.POSITIVE_INFINITY)
+			maxWidthOrHeight: 800,   // compressedFile will scale down by ratio to a point that width or height is smaller than maxWidthOrHeight (default: undefined)
+		}
+		Array.from(e.target.files).forEach(file=>{
+			
+			imageCompression(file, options).then(image=>{
+				let reader = new FileReader()
+				reader.onload =  (data) => {
+					image.data=data.target.result;
+					let images = this.state.images;
+					let img = new window.Image();
+					img.onload=()=>{
+						image.width=img.width;
+						image.height=img.height;
+						images.push(image);
+						this.setState({images})
+						//console.log(this);
+					}
+					img.src=data.target.result;
 				}
-				img.src=data.target.result;
-			}
-			reader.readAsDataURL(image)
-		})
+				
+				reader.readAsDataURL(image)
+			})
+			})
+			
 		e.target.value=""
 
 	}

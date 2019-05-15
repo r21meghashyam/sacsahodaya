@@ -1,11 +1,10 @@
-const functions = require('firebase-functions');
-
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
 // exports.helloWorld = functions.https.onRequest((request, response) => {
 //  response.send("Hello from Firebase!");
 // });
+/*
 const functions = require('firebase-functions');
 const gcs = require('@google-cloud/storage')();
 const spawn = require('child-process-promise').spawn;
@@ -13,10 +12,29 @@ const mkdirp = require('mkdirp-promise');
 const path = require('path');
 const os = require('os');
 const fs = require('fs');
+const admin = require("firebase-admin");
+const serviceAccount = require("./serviceAccountKey.json");
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyDWUlD7yY7eTndRatrsWbnnrbob5IlKS4Y",
+    authDomain: "sac-sahodaya.firebaseapp.com",
+    databaseURL: "https://sac-sahodaya.firebaseio.com",
+    projectId: "sac-sahodaya",
+    storageBucket: "sac-sahodaya.appspot.com",
+    credential: admin.credential.cert(serviceAccount),
+    messagingSenderId: "1010182875716"
+};
+admin.initializeApp(config);
+var storage = admin.storage();
+
+
 
 // // Create and Deploy Your First Cloud Functions
-exports.optimizeImages= functions.storage.object().onFinalize((data) => {
+exports.optimizeImages= functions.storage.object().onFinalize((image)=>compress(image));
+const compress=(data) => {
     // File and directory paths.
+    console.log("data",data);
     const filePath = data.name;
     const tempLocalFile = path.join(os.tmpdir(), filePath);
     const tempLocalDir = path.dirname(tempLocalFile);
@@ -45,7 +63,7 @@ exports.optimizeImages= functions.storage.object().onFinalize((data) => {
 
     // In my case i determine the size of the image based on the extension, 
     // but you can ignore this part or  use a custom rule.
-    if (data.contentType == 'image/jpeg') {
+    if (data.contentType === 'image/jpeg') {
         size = "1500x650^";
         crop = "1500x650+0+0";
     } else {
@@ -55,12 +73,13 @@ exports.optimizeImages= functions.storage.object().onFinalize((data) => {
 
     // Cloud Storage files.
     const bucket = gcs.bucket(data.bucket);
+    console.log("bucket",bucket);
     const file = bucket.file(filePath);
 
     return file.getMetadata()
         .then(([metadata]) => {
             if (metadata.metadata && metadata.metadata.optimized) {
-                return Promise.reject('Image has been already optimized');
+                return Promise.reject(Error('Image has been already optimized'));
             }
             return Promise.resolve();
         })
@@ -88,8 +107,10 @@ exports.optimizeImages= functions.storage.object().onFinalize((data) => {
         })
         .then(() => {
             console.log('Optimized image uploaded to Storage at', file);
+            console.log(file.getDownloadURL());
             // Once the image has been uploaded delete the local files to free up disk space.
             fs.unlinkSync(tempLocalFile);
             return null;
         });
-});
+}
+*/

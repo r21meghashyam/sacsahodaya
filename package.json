@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "babel-loader": "^8.0.4",
+    "browser-image-compression": "^1.0.0",
     "firebase": "^5.7.0",
     "formik": "^1.4.1",
     "immutable": "^4.0.0-rc.12",
@@ -11,7 +12,6 @@
     "moment": "^2.23.0",
     "react": "^16.7.0",
     "react-big-calendar": "^0.20.3",
-    "react-bind-all": "^1.0.3",
     "react-day-picker": "^7.2.4",
     "react-dom": "^16.7.0",
     "react-images": "^0.5.19",
