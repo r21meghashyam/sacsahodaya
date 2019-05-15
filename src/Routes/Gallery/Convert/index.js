@@ -31,8 +31,8 @@ export default class Create extends Component{
 					maxSizeMB: 1,          // (default: Number.POSITIVE_INFINITY)
 					maxWidthOrHeight: 800,   // compressedFile will scale down by ratio to a point that width or height is smaller than maxWidthOrHeight (default: undefined)
 				}
-				imageCompression(file, options).then(comporessedFile=>{
-					console.log(comporessedFile);
+				imageCompression(file, options).then(compressedFile=>{
+					console.log(compressedFile);
 					this.upload(file,data);
 				});
 			})
