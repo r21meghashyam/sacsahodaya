@@ -5,6 +5,7 @@ import './index.css'
 import Articles from './Routes/Articles';
 import EditProfile from './Routes/EditProfile';
 import CreateAlbum from './Routes/Gallery/Create';
+import AddPhoto from './Routes/Gallery/Add';
 import CreateArticle from './Routes/Articles/Create';
 import Events from './Routes/Events';
 import Gallery from './Routes/Gallery';
@@ -51,6 +52,7 @@ class App extends Component {
 		  				<Route path="/profile" component={Profile} exact/>
 		  				<Route path="/register" component={Register} exact/>
 		  				<Route path="/gallery/album/:album_id" component={ViewAlbum} exact/>
+		  				<Route path="/gallery/album/:album_id/add" component={AddPhoto} exact/>
 		  				<Route path="/gallery/convert" component={Convert} exact/>
 		  				<Route path="/" component={NotFound} />
 					</Switch>

@@ -5,9 +5,11 @@ import {
   Header,
   Segment,
 } from 'semantic-ui-react'
+import { Slide } from 'react-slideshow-image';
+
+
 import { Value } from 'slate'
 import {Link} from 'react-router-dom'
-import AllPhotos from '../Gallery/Photos';
 import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'; 
@@ -16,6 +18,13 @@ import firebase from 'firebase/app';
 
 const localizer = BigCalendar.momentLocalizer(moment) 
 
+const properties = {
+  duration: 5000,
+  transitionDuration: 500,
+  infinite: true,
+  indicators: true,
+  arrows: true
+}
 //Components
 
 /* eslint-disable react/no-multi-comp */
@@ -28,7 +37,8 @@ const localizer = BigCalendar.momentLocalizer(moment)
 export default class HomepageLayout extends Component{
   state={
     articles:[],
-    events:[]
+    events:[],
+    images:[]
   }
   constructor(props){
     super(props);
@@ -45,7 +55,15 @@ export default class HomepageLayout extends Component{
     })
   }
   componentWillMount(){
-    firebase.firestore().collection('events').onSnapshot(snapshot=>{
+    firebase.firestore().collection('images').where("album","==","eIaBAhTYCcIntDLj9Ima").get().then(snapshot=>{
+      let images = [];
+      snapshot.forEach(doc=>{
+        images.push(doc.data().url);
+      });
+      console.log(images);
+      this.setState({images})
+    });
+    firebase.firestore().collection('events').get().then(snapshot=>{
       let events=[];
       snapshot.docs.forEach(doc=>{
         events.push(doc.data());
@@ -62,9 +80,16 @@ export default class HomepageLayout extends Component{
     <Header as='h3' style={{ fontSize: '2em' }}>
           Photos
         </Header>
-    <AllPhotos limit={6}/>
+        <Slide {...properties}>
+        {this.state.images.map((url,index)=>
+          <div key={index} className="each-slide">
+            <img src={url} alt="slider"/>
+          </div>
+          )}
+        
+      </Slide>
     <Segment textAlign="center" basic>
-      <Button as={Link} to="/gallery" style={{magin:20,padding:20}} >View More</Button>
+      <Button as={Link} to="/gallery" style={{margin:20,padding:20}} >View More</Button>
     </Segment>
     </Container>
     

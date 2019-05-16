@@ -23,6 +23,7 @@ import {Link} from 'react-router-dom'
 //Components
 import ResponsiveContainer from '../../../Components/ResponsiveContainer'
 import imageCompression from 'browser-image-compression';
+import bindAll from 'react-autobind';
 
 /* eslint-disable react/no-multi-comp */
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
@@ -34,7 +35,36 @@ import imageCompression from 'browser-image-compression';
 export default class Create extends Component{ 
 	state={
 		images:[],
+		oldImages:[],
 		error:{}
+	}
+	constructor(props){
+		super(props);
+		bindAll(this);
+	}
+	componentWillMount(){
+		this.loadData();
+	}
+	async loadData(){
+		let album_id = this.props.match.params.album_id;
+		let doc = await firebase.firestore().collection('albums').doc(album_id).get();
+		let album = doc.data();
+		console.log(album);
+		let oldImages=[];
+		if(album.imageIds)
+		album.imageIds.forEach(image=>{
+			firebase.firestore().collection('images').doc(image).onSnapshot(doc=>{
+				let data = doc.data();
+				oldImages.push({src:data.url,width:data.width,height:data.height,type:data.type,id:doc.id})
+				this.setState({oldImages},()=>{
+					console.log(oldImages)
+				});
+			})
+		})
+		this.setState(
+			album
+		)
+
 	}
 	close(){
 		this.setState({modalOpen:false})
@@ -42,7 +72,8 @@ export default class Create extends Component{
 	  onChange(e){
 		this.setState({[e.target.name]:e.target.value});
 		
-	  }
+		}
+		
 	  onSubmit(e){
 		e.preventDefault();
 		let {name,date,images,error,description} = this.state;
@@ -55,8 +86,7 @@ export default class Create extends Component{
 			error.description="Description is empty";
 		if(!date||String(date).trim()==="")
 			error.date="Date is empty";
-		if(images.length===0)
-			error.images="No image is selected";
+		
 		this.setState({error});
 		if(Object.keys(error).length>0)
 			return;
@@ -64,29 +94,33 @@ export default class Create extends Component{
 		
 		let uploadBtn = document.querySelector('#uploadBtn');
 		uploadBtn.disabled=true;
-		uploadBtn.innerHTML="Creating album..."
+		uploadBtn.innerHTML="Modifying album..."
 		
 		
 		let firestore = firebase.firestore(); 
 		
 		//Creating an album on firebase 
-		firestore.collection("albums").add({
+		firestore.collection("albums").doc(this.props.match.params.album_id).set({
 			name,
 			date,
 			dateCreated: Date.now(),
 			description,
-			author:firebase.auth().currentUser.uid
-		})
+		},{merge:true})
 		
 		.then(snapshot=>{
-			let album_id = snapshot.id;
+			let album_id = this.props.match.params.album_id;
 			uploadBtn.innerHTML="Uploading images..."
 			let count = images.length;
 			let success=0;
-			let imageIds=[];
+			let imageIds=this.state.imageIds||[];
+			
 
 
 			//Create image id on firebase
+			if(images.length===0){
+				this.setState({completed:true,success:0,album_id})
+			}
+			else
 			images.forEach((image,index)=>{
 				let type = image.type.replace('image/','');
 				firebase.firestore().collection('images').add({
@@ -160,15 +194,7 @@ export default class Create extends Component{
 		}
 		return string;
 	};
-	  constructor(props){
-		super(props);
-		this.close=this.close.bind(this);
-		this.onChange=this.onChange.bind(this);
-		this.onSubmit=this.onSubmit.bind(this);
-		this.upload=this.upload.bind(this);
-		this.remove=this.remove.bind(this);
-		this.handleDayChange=this.handleDayChange.bind(this);
-	  }
+
 	upload(e){
 		const options = { 
 			maxSizeMB: 1,          // (default: Number.POSITIVE_INFINITY)
@@ -207,6 +233,24 @@ export default class Create extends Component{
 		images.splice(index,1)
 		this.setState({images})
 	}
+	async removeOld(e){
+		e.preventDefault();
+		let index = e.target.getAttribute('data-index');
+		let album = this.props.match.params.album_id;
+		let imageIds = this.state.imageIds;
+		let oldImages = this.state.oldImages;
+		console.log(index);
+		let imageId = this.state.images[this.state.currentImage];
+    let image = imageIds[index] +'.' + this.state.oldImages[index].type;
+		imageIds.splice(index,1);
+		oldImages.splice(index,1);
+		
+		firebase.firestore().collection("albums").doc(album).set({imageIds},{merge:true})
+		await firebase.firestore().collection("images").doc(imageId).delete();
+    firebase.storage().ref().child('images').child(image).delete();
+		console.log(e,index);
+		this.setState({imageIds,oldImages});
+	}
 	
 	handleDayChange(e){
 		this.setState({date:e.getTime()+(e.getTimezoneOffset()*60*1000)});
@@ -220,18 +264,18 @@ export default class Create extends Component{
 		}
 	}
   render(){
-	  let {images,error,completed,success,album_id} = this.state;
+	  let {images,error,completed,success,album_id,oldImages} = this.state;
 	return (
 	  
     <ResponsiveContainer>
       <Container text style={{ marginTop: '7em' }}>
-        <Header as='h1'>Create new album</Header>
+        <Header as='h1'>Modify album</Header>
         <Form style={{padding:20}} onSubmit={this.onSubmit} error={Object.keys(error).length>0}>
           <Form.Field>
-			<Form.Input fluid label='Album Name' placeholder='Album Name' error={Boolean(error.name)} name="name" onChange={this.onChange}/>
+			<Form.Input fluid label='Album Name' placeholder='Album Name' error={Boolean(error.name)} name="name" onChange={this.onChange} value={this.state.name}/>
           </Form.Field>
 		  <Form.Field>
-			<Form.TextArea  label='Description' placeholder='Some Text Here...' error={Boolean(error.description)} name="description" onChange={this.onChange}/>
+			<Form.TextArea  label='Description' placeholder='Some Text Here...' error={Boolean(error.description)} name="description" onChange={this.onChange} value={this.state.description} />
           </Form.Field>
           <Form.Field>
             <label>Date</label>
@@ -248,6 +292,17 @@ export default class Create extends Component{
             </Card.Content>
           </Card>
           </label>
+					{
+			  oldImages.map((image,index)=>(
+				<Card key={index}>
+				
+					<Image src={image.src}/>
+				<Card.Content>
+					<Button  color="red" data-index={index} onClick={(e)=>this.removeOld(e)} icon><Icon name="trash"/>Remove</Button>
+				</Card.Content>
+			</Card>
+			  ))
+		  }
 		  {
 			  images.map((image,index)=>(
 				<Card key={index}>
@@ -279,7 +334,7 @@ export default class Create extends Component{
 			</ul>)}
 			/>
 			
-		  {completed?'':<Button type='submit' id="uploadBtn">Create album &amp; Upload Images</Button>}
+		  {completed?'':<Button type='submit' id="uploadBtn">Modify album</Button>}
 		  {completed?<Button as={Link} to={`/gallery/album/${album_id}`} color="teal">View Album</Button>:''}
 		  
         </Form>

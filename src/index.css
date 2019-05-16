@@ -61,3 +61,24 @@ hr{
  margin:20px;
  border:2px 1px solid #999;
 }
+
+.each-slide{
+  height: 50vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.each-slide img{
+  max-width: 100%;
+  max-height: 100%;
+  
+}
+
+
+
+@media screen and (max-width:600px){
+  .slideImage{
+    height:50vw;
+  }
+}

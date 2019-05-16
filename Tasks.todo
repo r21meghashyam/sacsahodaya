@@ -1,75 +1,75 @@
 Homepage:
-    ☐ Add gallery & articles to home page (maybe recent 5) @high
+    ✔ Add gallery & articles to home page (maybe recent 5) @high @done (5/15/2019, 11:31:20 PM)
     ✔ Add sahodaya logo to homepage navigation on scroll down @low @done (12/22/2018, 4:18:25 AM)
     Content:
         ✔ Gallery @done (2/10/2019, 9:20:29 PM)
         ✔ Articles @done (2/10/2019, 9:20:33 PM)
-        ☐ About
-        ☐ Work of sahodaya (Donated so far, Old Age homes visisted, etc)
-        ☐ Testimonials
-        ☐ Contact Details
+        ✔ About @done (5/15/2019, 11:31:23 PM)
+        ☐ Work of sahodaya (Donated so far, Old Age homes visisted, etc)@high @additional
+        ☐ Testimonials @high  @additional
+        ☐ Contact Details @high @additional
         ✔ Upcomming Events @done (2/10/2019, 9:20:41 PM)
 Events:
-    ☐ Old and new Events
-    ☐ Calendar of events
+    ☐ Old and new Events @low 
+    ✔ Calendar of events @done (5/15/2019, 11:31:33 PM)
 Gallery:
-    ☐ On hover on album card, the image keeps changing every 2/3 second with another pic of the album @low 
-    ☐ Date wise view tab @low 
-    ☐ Location wise view tab @low
-    ☐ Placeholder for images to load @low 
+    ✘ On hover on album card, the image keeps changing every 2/3 second with another pic of the album @low @additional @cancelled (5/16/2019, 5:19:39 PM)
+    ☐ Date wise view tab @low @additional
+    ☐ Location wise view tab @low @additional
+    ☐ Placeholder for images to load @low @additional
     ✔ Create album button only for admins @high @done (1/3/2019, 8:45:36 AM)
     ✔ layout Gallery @high @done (12/30/2018, 4:24:53 AM)
 View Album:
-    ☐ Placeholder for images to load @low 
+    ☐ Placeholder for images to load @low @additional
     ✔ Delete album button only for admins @high @done (1/3/2019, 8:45:48 AM)
-    ☐ Delete photo for admins @high
-    ☐ photo details: date, caption @low 
-    ☐ Likes and comments on photos @low 
-    ☐ On hover on photo, display like button with like count @low 
-    ☐ Description of the album @low 
-    ☐ Share album button @low 
-    ☐ Play videos @low 
+    ✔ Delete photo for admins @high @done (5/16/2019, 5:16:07 PM)
+    ☐ photo details: date, caption @low @additional
+    ☐ Likes and comments on photos @low @additional
+    ☐ On hover on photo, display like button with like count @low @additional
+    ✔ Description of the album @low @done (5/16/2019, 5:24:39 PM)
+    ☐ Share album button @low @additional
+    ☐ Play videos @low @additional
 Create Album:
     ✔ Upload images to gallery @high @done (12/30/2018, 4:24:55 AM)
-    ☐ Drag and drop images @low
-    ☐ Add location (optional) @low
-    ☐ Upload videos @low 
-    ☐ Multiple contributors to one article (ask first author permisson) @low
+    ☐ Drag and drop images @low @additional
+    ☐ Add location (optional) @low @additional
+    ☐ Upload videos @low  @additional
+    ☐ Multiple contributors to one article (ask first author permisson) @low @additional
 About:
-    ☐ About page @high
+    ✔ About page @high @done (5/16/2019, 5:16:12 PM)
 Articles:
-    ☐ Author photo @low
-    ☐ View, likes ,comments, share count @low 
-    ☐ Pagination
+    ☐ Author photo @low @additional
+    ☐ View, likes ,comments, share count @low @additional
+    ☐ Pagination @additional
 View Article:
-    ☐ Comments and likes @low
-    ☐ Share album button @low
-    ☐ Edit button only for admins and authors @high 
+    ☐ Comments and likes @low @additional
+    ☐ Share album button @low @additional
+    ✔ Edit button only for admins and authors @high @done (5/16/2019, 5:17:26 PM)
 Write Article:
-    ☐ Add images @high 
-    ☐ Add emojis @low
-    ☐ Multiple Author permisson @low 
-    ☐ Add font color, marker @low 
+    ✔ Add images @high @done (5/16/2019, 5:16:17 PM)
+    ☐ Add emojis @low @additional
+    ☐ Multiple Author permisson @low  @additional
+    ☐ Add font color, marker @low @additional
 Profile:
     ✔ Create a layout for profile @today @done (12/22/2018, 4:05:36 AM)
 Edit Profile:
     ✔ Current Occupation @high @done (12/27/2018, 1:29:22 PM)
-    ☐ Ask Occupation in detail @high 
-    ☐ verification of phone number @high 
-    ☐ Link accounts @low 
-    ☐ Change profile pic @low 
+    ✔ Ask Occupation in detail @high @done (5/16/2019, 5:18:13 PM)
+    ☐ verification of phone number @low @additional
+    ☐ Link accounts @high @requested
+    ☐ Change profile pic @low @additional
     ✔ Change name @low @done (12/30/2018, 4:25:05 AM)
-    ☐ Add email (Provide verification) @low 
-    ☐ Add phone Number (Provide verification) @high 
+    ☐ Add email (Provide verification) @low @additional
+    ☐ Add phone Number (Provide verification) @low @additional
     ✔ Ask personal details in profile (with edit mode) @high @today @done (12/27/2018, 5:49:18 AM)
 Members:
     ✔ Admin change role of other users @done (12/27/2018, 7:13:46 AM)
     ✔ Admin view other users (use pagination & search) @high @done (12/27/2018, 7:13:43 AM)
 Footer:
-    ✘ Add admin link in footer @high @cancelled (12/27/2018, 6:06:03 AM)
+    ✘ Add admin link in footer @high @cancelled (12/27/2018, 6:06:03 AM) @additional
 Header:
     ✔ Add log in status for mobile container @done @high  (12/21/2018, 6:52:45 PM)
 Other:
     ✔ Categorize admin,editors,subscribers @low @done (12/27/2018, 7:13:50 AM)
     ✔ Merge HomeContainer & Responsive Cotainer @low @done (12/21/2018, 6:51:30 PM)
-    ☐ Push Notification on new album & articles @low 
+    ☐ Push Notification on new album & articles @low @additional

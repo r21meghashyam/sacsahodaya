@@ -1,9 +1,12 @@
 {
     "cSpell.ignoreWords": [
+        "autobind",
         "bitmaprenderer",
         "browserslist",
+        "close",
         "formik",
         "jepg",
+        "lightbox",
         "sacsahodaya"
     ]
 }
