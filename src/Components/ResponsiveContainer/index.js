@@ -86,8 +86,9 @@ class DesktopContainer extends Component {
                 pointing={!fixed}
                 secondary={!fixed}
                 size='large'
+                
               >
-                <Container>
+                <Container style={{position:"relative",zIndex:"1000"}}>
                 {!this.state.fixed?'':
                 <React.Fragment>
                   <Menu.Item as={Link} to="/" header>
@@ -205,7 +206,7 @@ class DesktopContainer extends Component {
               style={home?{ minHeight: 350, padding: '1em 0em' }:{}}
               vertical
             >
-              <Container>
+              <Container style={{position:"relative",zIndex:"1000"}}>
                 <Menu inverted pointing secondary size='large'>
                   <Menu.Item onClick={this.handleToggle}>
                     <Icon name='sidebar' />

@@ -8,16 +8,8 @@ import 'firebase/storage';
 import 'firebase/auth';
 import 'semantic-ui-css/semantic.min.css'
 import Redux from './Lib/Redux';  
+import config from './utils/firebase-config'
 
-// Initialize Firebase
-var config = {
-apiKey: "AIzaSyDWUlD7yY7eTndRatrsWbnnrbob5IlKS4Y",
-authDomain: "sac-sahodaya.firebaseapp.com",
-databaseURL: "https://sac-sahodaya.firebaseio.com",
-projectId: "sac-sahodaya",
-storageBucket: "sac-sahodaya.appspot.com",
-messagingSenderId: "1010182875716"
-};
 
 
 firebase.initializeApp(config);
