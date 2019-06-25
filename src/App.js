@@ -22,6 +22,9 @@ import ViewArticle from './Routes/Articles/ViewArticle';
 import EditArticle from './Routes/Articles/Edit';
 import AddEvent from './Routes/Events/AddEvent';
 import About from './Routes/About';
+import EventRegister from './Routes/EventRegister';
+import EventRegisterSuccess from './Routes/EventRegisterSuccess';
+import EventRegisterList from './Routes/EventRegisterList';
 
 
 
@@ -54,6 +57,10 @@ class App extends Component {
 		  				<Route path="/gallery/album/:album_id" component={ViewAlbum} exact/>
 		  				<Route path="/gallery/album/:album_id/add" component={AddPhoto} exact/>
 		  				<Route path="/gallery/convert" component={Convert} exact/>
+		  				<Route path="/event-register" component={EventRegister} exact/>
+		  				<Route path="/event-register-success" component={EventRegisterSuccess} exact/>
+		  				<Route path="/event-register-list" component={EventRegisterList} exact/>
+
 		  				<Route path="/" component={NotFound} />
 					</Switch>
 				
