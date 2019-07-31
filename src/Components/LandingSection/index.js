@@ -121,7 +121,7 @@ const properties = {
 
 class LandingSection extends React.Component{
     componentDidMount(){
-        let particles = document.querySelector("#particles");
+        //let particles = document.querySelector("#particles");
         
         window.particlesJS('particles',properties);
     }
